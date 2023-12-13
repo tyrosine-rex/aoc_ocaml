@@ -1,10 +1,6 @@
 let rgx1 = "(\\d)(?:.*(\\d))?"
 let rgx2 = "(\\d|zero|one|two|three|four|five|six|seven|eight|nine)(?:.*(\\d|zero|one|two|three|four|five|six|seven|eight|nine))?"
 
-let read_lines file =
-  let ic = In_channel.open_text file in
-  In_channel.input_lines ic
-
 let digit_of_litteral l =
   match l with
     | "zero"  | "0" -> "0"
@@ -33,6 +29,6 @@ let sum_lines rgx lines =
   in aux 0 lines
 
 let results =
-  let r1 = sum_lines (Re.Perl.compile_pat rgx1) (read_lines "./input/day1.txt") in
-  let r2 = sum_lines (Re.Perl.compile_pat rgx2) (read_lines "./input/day1.txt") in
+  let r1 = sum_lines (Re.Perl.compile_pat rgx1) (Common.read_lines "./input/day1.txt") in
+  let r2 = sum_lines (Re.Perl.compile_pat rgx2) (Common.read_lines "./input/day1.txt") in
   Printf.sprintf "pt1: %d\tpt2: %d\n" r1 r2
