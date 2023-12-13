@@ -1,6 +1,5 @@
 let rgx = "Card.+?(\\d+): (.*) \\| (.*)"
-
-let split_line l = Re.split (Re.Perl.compile_pat " +") l
+let split_rgx = Re.Perl.compile_pat " +"
 
 let calc_score list =
   let n = List.length list in
@@ -22,8 +21,8 @@ let parse_line rgx line = match Re.exec_opt rgx line with
   | None -> 0
   | Some m -> calc_score (
                 intersect
-                (List.map int_of_string (split_line (Re.Group.get m 2)))
-                (List.map int_of_string (split_line (Re.Group.get m 3)))
+                  (List.map int_of_string (Re.split split_rgx (Re.Group.get m 2)))
+                  (List.map int_of_string (Re.split split_rgx (Re.Group.get m 3)))
               )
 
 let sum_lines rgx lines =
@@ -32,6 +31,50 @@ let sum_lines rgx lines =
     | hd::tl -> aux (res + parse_line rgx hd) tl
   in aux 0 lines
 
+let make_graph rgx lines =
+  let make_node m =
+    let id  = int_of_string (Re.Group.get m 1)
+    in let n = List.length (
+        intersect
+          (List.map int_of_string (Re.split split_rgx (Re.Group.get m 2)))
+          (List.map int_of_string (Re.split split_rgx (Re.Group.get m 3)))
+    ) in let v= List.init n (fun x -> x+id+1)
+    in (id, v)
+  in
+  let parse_line_2 rgx l = match Re.exec_opt rgx l with
+    | None -> (-1, [])
+    | Some m -> make_node m
+  in
+    let rec aux res = function
+    | [] -> res
+    | hd::tl -> aux ((parse_line_2 rgx hd)::res) tl
+  in aux [] lines
+
+
+let parcours g start =
+    let rec get_voisin s = function
+      | [] -> []
+      | (i, v)::_ when i = s -> v
+      | (i, _)::tl when i != s -> get_voisin s tl
+      | (_, _)::_ -> []
+    in
+    let rec aux tovisit visited = match tovisit with
+      | [] -> visited
+      | hd::tl -> aux ((get_voisin hd g) @ tl) (hd::visited)
+    in aux [start] []
+
+
+let sum_lines_2 rgx lines =
+  let gr = make_graph rgx lines in
+  let n = List.length lines in
+  let rec aux res = function
+    | [] -> res
+    | hd::tl -> aux ((parcours gr hd) @ res) tl
+  in List.length (aux [] (List.init n (fun x -> x+1)))
+
+
 let results =
   let r1 = sum_lines (Re.Perl.compile_pat rgx) (Common.read_lines "./input/day4.txt") in
-  Printf.sprintf "day4\tpt1: %d\tpt2: \n" r1
+  let r2 = sum_lines_2 (Re.Perl.compile_pat rgx) (Common.read_lines "./input/day4.txt") in
+  Printf.sprintf "day4\tpt1: %d\tpt2: %d\n" r1 r2
+
