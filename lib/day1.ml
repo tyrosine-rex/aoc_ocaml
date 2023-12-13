@@ -31,4 +31,4 @@ let sum_lines rgx lines =
 let results =
   let r1 = sum_lines (Re.Perl.compile_pat rgx1) (Common.read_lines "./input/day1.txt") in
   let r2 = sum_lines (Re.Perl.compile_pat rgx2) (Common.read_lines "./input/day1.txt") in
-  Printf.sprintf "pt1: %d\tpt2: %d\n" r1 r2
+  Printf.sprintf "day1\tpt1: %d\tpt2: %d\n" r1 r2
