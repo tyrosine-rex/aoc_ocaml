@@ -31,8 +31,8 @@ let rec prod = function
   | [] -> 1
   | hd::tl -> hd * prod tl
 
-let results =
-  let lines = Common.split_with "\n" (Common.read_all "./input/day6.txt") in
+let results file =
+  let lines = Common.split_with "\n" (Common.read_all file) in
   let times = List.map int_of_string (List.tl (Common.split_with " +" (List.nth lines 0))) in
   let dists = List.map int_of_string (List.tl (Common.split_with " +" (List.nth lines 1))) in
   let all = Common.zip times dists in

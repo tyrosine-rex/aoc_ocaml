@@ -73,8 +73,8 @@ let sum_lines_2 rgx lines =
   in List.length (aux [] (List.init n (fun x -> x+1)))
 
 
-let results =
-  let r1 = sum_lines (Re.Perl.compile_pat rgx) (Common.read_lines "./input/day4.txt") in
-  let r2 = sum_lines_2 (Re.Perl.compile_pat rgx) (Common.read_lines "./input/day4.txt") in
+let results file =
+  let r1 = sum_lines (Re.Perl.compile_pat rgx) (Common.read_lines file) in
+  let r2 = sum_lines_2 (Re.Perl.compile_pat rgx) (Common.read_lines file) in
   Printf.sprintf "day4\tpt1: %d\tpt2: %d\n" r1 r2
 

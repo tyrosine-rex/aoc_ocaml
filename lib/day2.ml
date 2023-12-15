@@ -67,8 +67,8 @@ let rec sum = function
   | [] -> 0
   | hd::tl -> hd+(sum tl)
 
-let results =
-  let lines = Common.read_lines "./input/day2.txt" in
+let results file =
+  let lines = Common.read_lines file in
   let games = List.map parse_line lines in
   let filtered_games = List.filter (is_possible_game 12 13 14) games in
   let r1 = sum_id filtered_games in
