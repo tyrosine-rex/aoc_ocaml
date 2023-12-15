@@ -1,7 +1,7 @@
 # Adventt of Code 2023 -- but in Ocaml 😳
 
 - [X] day 1
-- [ ] day 2
+- [X] day 2
 - [ ] day 3
 - [X] day 4
 - [ ] day 5
