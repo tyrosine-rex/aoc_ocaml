@@ -1,0 +1,27 @@
+type 'a cycle = {
+  mutable index: int;
+  max: int;
+  seq: 'a array
+}
+
+let init_cycle seq = 
+  let s = Array.of_list seq in {
+    index = 0;
+    max = Array.length s;
+    seq = s;
+  }
+
+let next_cycle cyc = 
+  let value = cyc.seq.(cyc.index) in 
+  let nxt_index = cyc.index + 1 in 
+  cyc.index <- (if nxt_index >= cyc.max then 0 else nxt_index);
+  value
+
+
+
+type node = 
+  | Start 
+  | Destination
+
+
+type network = {}
