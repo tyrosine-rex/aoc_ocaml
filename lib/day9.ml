@@ -35,4 +35,4 @@ let results file =
   let predicted2 = List.map analyse_n_predict_next (List.map List.rev lines_list) in
   let r1 = sum predicted in
   let r2 = sum predicted2 in
-  Printf.sprintf "day9\tpt1: %d\tpt2: %d\n" r1 r2
+  Printf.sprintf "day9\tpt1: %d\tpt2: %d" r1 r2

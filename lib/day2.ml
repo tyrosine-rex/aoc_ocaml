@@ -74,5 +74,5 @@ let results file =
   let r1 = sum_id filtered_games in
   let powers = List.map calc_power games in
   let r2 = sum powers in
-  Printf.sprintf "day2\tpt1: %d\tpt2: %d\n" r1 r2
+  Printf.sprintf "day2\tpt1: %d\tpt2: %d" r1 r2
 

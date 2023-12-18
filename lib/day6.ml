@@ -45,7 +45,7 @@ let results file =
   let wcr2 = calc_winning_case_range time_2 dist_2 in
   let wcc = convert_to_nb_combin (wcr2::[]) in
   let r2 = prod wcc in
-  Printf.sprintf "day6\tpt1: %d\tpt2: %d\n" r1 r2
+  Printf.sprintf "day6\tpt1: %d\tpt2: %d" r1 r2
 
 
 

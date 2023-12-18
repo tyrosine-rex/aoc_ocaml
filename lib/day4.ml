@@ -76,5 +76,5 @@ let sum_lines_2 rgx lines =
 let results file =
   let r1 = sum_lines (Re.Perl.compile_pat rgx) (Common.read_lines file) in
   let r2 = sum_lines_2 (Re.Perl.compile_pat rgx) (Common.read_lines file) in
-  Printf.sprintf "day4\tpt1: %d\tpt2: %d\n" r1 r2
+  Printf.sprintf "day4\tpt1: %d\tpt2: %d" r1 r2
 
