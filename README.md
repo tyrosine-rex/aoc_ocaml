@@ -1,4 +1,4 @@
-# Adventt of Code 2023 -- but in Ocaml 😳
+# Advent of Code 2023 -- but in Ocaml 😳
 
 - [X] day 1
 - [X] day 2
