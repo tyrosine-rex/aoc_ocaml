@@ -7,3 +7,5 @@ let () =
   print_string (Lib.Day7.results "./input/day7.txt");
   print_endline (Lib.Day7pt2.results "./input/day7.txt");
   print_endline (Lib.Day9.results "./input/day9.txt");
+
+  print_endline(Lib.Day19.results "./input/day19_1.txt" "./input/day19_2.txt")
